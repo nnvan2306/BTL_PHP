@@ -15,75 +15,87 @@
         <div class="w-full bg-white p-8 rounded-lg shadow-lg h-full">
             <h2 class="text-2xl font-bold text-center mb-6">Thêm Sản Phẩm - Quản Lý Sữa</h2>
             <form method="POST" action="">
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
-                            Tên Sản Phẩm
-                        </label>
-                        <input required
-                            class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="text" id="title" name="title" placeholder="Nhập tên sản phẩm... ">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Thông Tin Chung</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                                    Tên Sản Phẩm
+                                </label>
+                                <input required
+                                    class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                    type="text" id="title" name="title" placeholder="Nhập tên sản phẩm... ">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">
+                                    Đường Dẫn Hình Ảnh
+                                </label>
+                                <input required
+                                    class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                    type="url" id="thumbnail" name="thumbnail" placeholder="Nhập hình ảnh... ">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">
-                            Nhập Đường Dẫn Hình Ảnh
-                        </label>
-                        <input required
-                            class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="url" id="thumbnail" name="thumbnail" placeholder="Nhập hình ảnh... ">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="weight">
-                            Nhập Trọng Lượng Sản Phẩm
-                        </label>
-                        <input required
-                            class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="weight" id="weight" name="weight" placeholder=" Nhập Trọng Lượng Sản Phẩm... ">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
-                            Nhập Đơn Giá Cho Sản Phẩm
-                        </label>
-                        <input
-                            class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="text" id="price" name="price" placeholder="Nhập Đơn Giá Sản Phẩm... ">
-                    </div>
-                    <div class="mb-4 col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
-                            Trạng Thái
-                        </label>
-                        <select
-                            class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            id="status" name="is_active">
-                            <option>--- Chọ Trạng Thái ---</option>
-                            <option value="true">Hiển Thị</option>
-                            <option value="false">Ẩn</option>
 
-                        </select>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Thông Tin Sản Phẩm</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="weight">
+                                    Trọng Lượng
+                                </label>
+                                <input required
+                                    class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                    type="text" id="weight" name="weight" placeholder="Nhập trọng lượng sản phẩm... ">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+                                    Đơn Giá
+                                </label>
+                                <input
+                                    class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                    type="text" id="price" name="price" placeholder="Nhập đơn giá sản phẩm... ">
+                            </div>
+                            <div class="mb-4 col-span-2">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
+                                    Trạng Thái
+                                </label>
+                                <select
+                                    class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                    id="status" name="is_active">
+                                    <option>--- Chọn Trạng Thái ---</option>
+                                    <option value="true">Hiển Thị</option>
+                                    <option value="false">Ẩn</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-4 col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="content">
-                            Mô Tả Sản Phẩm
-                        </label>
-                        <textarea required minlength="4"
-                            class="w-full px-3 min-h-[300px] py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="text" id="content" name="content" placeholder="Nhập Mô tả sản phẩm... "></textarea>
+
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Mô Tả Sản Phẩm</h3>
+                        <div class="mb-4">
+                            <textarea required minlength="4"
+                                class="w-full px-3 min-h-[200px] py-2 border rounded-md text-gray-700 focus:outline-none focus:border-orange-600"
+                                type="text" id="content" name="content" placeholder="Nhập mô tả sản phẩm... "></textarea>
+                        </div>
                     </div>
                 </div>
-                <div class="mb-6">
-                    <div class="flex items-center gap-6 justify-center max-w-[30%] ml-auto">
-                        <button
-                            class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                            type="submit">
-                            Thêm
-                        </button>
-                        <button
+
+                <div class="mt-6 flex justify-end gap-4">
+                    <button
+                        class="bg-orange-600 text-white py-2 px-6 rounded-md hover:bg-orange-700 transition duration-300"
+                        type="submit">
+                        Thêm
+                    </button>
+                    <button
                         class="bg-orange-600 text-white py-2 px-6 rounded-md hover:bg-orange-700 transition duration-300"
                         type="reset">
                         Clear
                     </button>
                 </div>
             </form>
+
         </div>
     </div>
     <?php
