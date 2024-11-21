@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
     <header class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-lg font-bold">
-                <a href="index.php">Shop Sữa</a>
+                <a href="index.php">Shop Sữa Chất Lượng Cao</a>
             </div>
             <div class="flex space-x-4">
                 <input type="text" class="p-2 rounded-lg" placeholder="Tìm kiếm sản phẩm...">

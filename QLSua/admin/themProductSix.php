@@ -15,9 +15,9 @@
         <div class="w-full bg-white p-8 rounded-lg shadow-lg h-full">
             <h2 class="text-2xl font-bold text-center mb-6">Thêm Sản Phẩm - Quản Lý Sữa Tuần 6</h2>
             <form method="POST" action="">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="Id">
                             Nhập Mã Sản Phẩm
                         </label>
                         <input required
@@ -25,15 +25,15 @@
                             type="text" id="Id" name="Id" placeholder="Nhập mã sản phẩm... ">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="Title">
                             Tên Sản Phẩm
                         </label>
                         <input required
                             class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="text" id="title" name="Title" placeholder="Nhập tên sản phẩm... ">
+                            type="text" id="Title" name="Title" placeholder="Nhập tên sản phẩm... ">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="PhoneNumber">
                             Nhập Số Điện Thoại
                         </label>
                         <input required
@@ -41,37 +41,36 @@
                             type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Nhập Số Điện Thoại... ">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="Email">
                             Nhập Email Hãng Sữa
                         </label>
                         <input required
                             class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
                             type="email" id="Email" name="Email" placeholder="Nhập Email ... ">
                     </div>
-                    <div class="mb-4 col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="content">
-                            Nhập Địa Chỉ Hãng Sữa
-                        </label>
-                        <textarea required minlength="4"
-                            class="w-full px-3 min-h-[300px] py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-                            type="text" id="Address" name="Address" placeholder="Nhập Thông Tin Địa Chỉ... "></textarea>
-                    </div>
                 </div>
-                <div class="mb-6">
-                    <div class="flex items-center gap-6 justify-center max-w-[30%] ml-auto">
-                        <button
-                            class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                            type="submit">
-                            Thêm
-                        </button>
-                        <button
-                            class="w-full bg-yellow-700 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                            type="reset">
-                            Clear
-                        </button>
-                    </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Address">
+                        Nhập Địa Chỉ Hãng Sữa
+                    </label>
+                    <textarea required minlength="4"
+                        class="w-full px-3 min-h-[300px] py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+                        type="text" id="Address" name="Address" placeholder="Nhập Thông Tin Địa Chỉ... "></textarea>
+                </div>
+                <div class="flex items-center gap-4 justify-center mt-6">
+                    <button
+                        class="w-full max-w-[200px] bg-orange-600 text-white py-2 rounded-md hover:bg-orange-700 transition duration-300"
+                        type="submit">
+                        Thêm
+                    </button>
+                    <button
+                        class="w-full max-w-[200px] bg-yellow-700 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                        type="reset">
+                        Clear
+                    </button>
                 </div>
             </form>
+
         </div>
     </div>
     <?php
