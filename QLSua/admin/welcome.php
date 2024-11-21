@@ -55,7 +55,7 @@
 
             <!-- Footer -->
             <footer class="text-center text-gray-500 py-6">
-                <p>&copy; 2024 Sữa Trường Sơn. All Rights Reserved.</p>
+                <p>&copy; 2024 Sữa . All Rights Reserved.</p>
             </footer>
         </div>
     </div>

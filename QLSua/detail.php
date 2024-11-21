@@ -1,7 +1,7 @@
 <?php
 include './connect.php';
 $product_id = isset($_GET['sp']) ? (int) $_GET['sp'] : 0;
-$query = "select * from suacc where id = $product_id";
+$query = "select * from sua where id = $product_id";
 $result = mysqli_query($conn, query: $query);
 
 if ($result->num_rows > 0) {
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
     <header class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-lg font-bold">
-                <a href="index.php">Shop Sữa Trường Sơn</a>
+                <a href="index.php">Shop Sữa</a>
             </div>
             <div class="flex space-x-4">
                 <input type="text" class="p-2 rounded-lg" placeholder="Tìm kiếm sản phẩm...">
@@ -73,7 +73,7 @@ if ($result->num_rows > 0) {
     </div>
     <footer class="bg-blue-600 text-white p-4 mt-8">
         <div class="container mx-auto text-center">
-            <p>&copy; 2024 Shop Sữa Trường Sơn. All rights reserved.</p>
+            <p>&copy; 2024 Shop Sữa. All rights reserved.</p>
         </div>
     </footer>
 </body>

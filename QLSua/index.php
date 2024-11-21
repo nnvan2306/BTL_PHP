@@ -59,11 +59,15 @@
         </section>
         <section>
             <h2 class="text-2xl font-semibold mb-4">Sản phẩm nổi bật</h2>
-            <div class="grid grid-cols-3 gap-4">
+            <div class="">
                 <?php
                 include './connect.php';
-                $query = "select * from Sua";
+                $query = "select * from Sua limit 1 offset 0";
                 $result = mysqli_query($conn, $query);
+                ?>
+                <div class="grid grid-cols-3 gap-4">
+
+             <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                 ?>
@@ -78,12 +82,51 @@
                             <a href="detail.php?sp=<?php echo $row["id"] ?>"
                                 class="bg-blue-600 text-white p-2 rounded-lg mt-4 w-full block text-center">Xem Chi Tiết</a>
                         </div>
+
+
+
+
+
+
+
                 <?php
                     }
-                }
+                }?>
+            </div>  
+            
+            <!-- pagination -->
+
+            <div class="d-flex justify-center gap-1">
+
+
+                <?php
+
+
+                $sql_count = "SELECT COUNT(*) AS total FROM Sua";
+                $count_result = mysqli_query($conn, $sql_count);
+
+                if ($count_result) {
+                   $row_count = mysqli_fetch_assoc($count_result);
+                    $total_records = $row_count['total'];
+
+                   $records_per_page = 1;
+                   $total_pages = ceil($total_records / $records_per_page);
+
+    for ($page = 1; $page <= $total_pages; $page++) {
+        echo '<div class="page-div p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50">Trang ' . $page . '</div>';
+    }
+}
                 ?>
-            </div>
-        </section>
+
+
+
+</div>
+
+
+
+
+            </div>     
+</section>
     </main>
     <footer class="bg-blue-600 text-white p-4 mt-8">
         <div class="container mx-auto text-center">

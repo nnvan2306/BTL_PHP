@@ -45,7 +45,7 @@ include '../connect.php';
             </thead>
             <tbody>
                 <?php
-                $query = "select * from suacc";
+                $query = "select * from sua";
                 $result = mysqli_query($conn, $query);
                 if ($result->num_rows > 0) {
                     $i = 1;

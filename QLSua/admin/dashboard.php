@@ -8,6 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css">
+    <script>
+        const isAdmin = localStorage.getItem("isAdmin");
+        const fullUrl = window.location.href.split("admin/dashboard.php")[0];
+        if(isAdmin !== '1'){
+            
+            window.location.href = fullUrl;
+            console.log('b')
+        }
+    </script>
 </head>
 <!-- 
 <?php
@@ -134,7 +143,7 @@ if (empty($_SESSION['username'])) {
             if (codeSucc == "200") {
                 Swal.fire({
                     title: "Xin Chào",
-                    text: "Chào mừng bạn đến với trang admin của Sữa Trường Sơn",
+                    text: "Chào mừng bạn đến với trang admin của Sữa ",
                     icon: "success",
                     showConfirmButton: true,
                 }).then(() => {
