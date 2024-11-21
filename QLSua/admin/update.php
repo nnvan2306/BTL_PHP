@@ -2,7 +2,7 @@
 include '../connect.php';
 if (!empty($_POST)) {
     try {
-        $sql = "UPDATE suacc SET title = ?, thumbnail = ?, weight = ?, price = ?, content = ?, is_active = ? WHERE id = ?";
+        $sql = "UPDATE sua SET title = ?, thumbnail = ?, weight = ?, price = ?, content = ?, is_active = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
         $title = $_POST["title"];

@@ -6,6 +6,10 @@
     <title>Shop Sữa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script>
+    console.log('a')
+</script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -62,7 +66,13 @@
             <div class="">
                 <?php
                 include './connect.php';
-                $query = "select * from Sua limit 1 offset 0";
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+                $records_per_page = 6; 
+                
+                $offset = ($page - 1) * $records_per_page;
+                
+                $query = "SELECT * FROM Sua LIMIT $records_per_page OFFSET $offset";
                 $result = mysqli_query($conn, $query);
                 ?>
                 <div class="grid grid-cols-3 gap-4">
@@ -83,12 +93,6 @@
                                 class="bg-blue-600 text-white p-2 rounded-lg mt-4 w-full block text-center">Xem Chi Tiết</a>
                         </div>
 
-
-
-
-
-
-
                 <?php
                     }
                 }?>
@@ -96,7 +100,7 @@
             
             <!-- pagination -->
 
-            <div class="d-flex justify-center gap-1">
+            <div class="d-flex justify-center gap-1 mt-4">
 
 
                 <?php
@@ -109,12 +113,12 @@
                    $row_count = mysqli_fetch_assoc($count_result);
                     $total_records = $row_count['total'];
 
-                   $records_per_page = 1;
+                   $records_per_page = 6;
                    $total_pages = ceil($total_records / $records_per_page);
 
-    for ($page = 1; $page <= $total_pages; $page++) {
-        echo '<div class="page-div p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50">Trang ' . $page . '</div>';
-    }
+        for ($page = 1; $page <= $total_pages; $page++) {
+            echo '<div class="btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[red]" : '').'">Trang ' . $page . '</div>';
+        }
 }
                 ?>
 
@@ -154,7 +158,7 @@
 
         if (isAdmin === '1' && authDiv) {
             const link = document.createElement("a");
-            link.href = window.location.href + "admin/dashboard.php";
+            link.href = window.location.href.split("?")[0] + "admin/dashboard.php";
             link.classList.add("btn-link");
 
             const newButton = document.createElement("button");
@@ -173,6 +177,24 @@
                 }
             })
         }
+
+        const listBtn = document.querySelectorAll(".btnPage");
+
+
+listBtn.forEach(btn => {
+    btn.addEventListener("click", function() {
+        const page = this.classList.contains("btnPage") ? this.classList[1].split("-")[1] : null;
+
+        if (page) {
+            window.location.href = window.location.pathname + "?page=" + page;
+           
+
+        }
+    });
+});
+
+
+        
     </script>
 </body>
 

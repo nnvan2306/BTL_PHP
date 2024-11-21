@@ -30,6 +30,7 @@ include '../connect.php';
 
     <div class='container mx-auto mt-8'>
         <h2 class="text-2xl font-bold mb-4">Danh sách Sản Phẩm</h2>
+
         <table class="min-w-full bg-white border-collapse border border-gray-300">
             <thead>
                 <tr class="bg-gray-200">
@@ -45,7 +46,14 @@ include '../connect.php';
             </thead>
             <tbody>
                 <?php
-                $query = "select * from sua";
+                // $query = "select * from sua";
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+                $records_per_page = 2; 
+                
+                $offset = ($page - 1) * $records_per_page;
+                
+                $query = "SELECT * FROM Sua LIMIT $records_per_page OFFSET $offset";
                 $result = mysqli_query($conn, $query);
                 if ($result->num_rows > 0) {
                     $i = 1;
@@ -107,6 +115,34 @@ include '../connect.php';
 
             </tbody>
         </table>
+
+
+
+
+        <div class="d-flex justify-center gap-1 mt-4 w-[100%]">
+
+
+                <?php
+
+
+                $sql_count = "SELECT COUNT(*) AS total FROM Sua";
+                $count_result = mysqli_query($conn, $sql_count);
+
+                if ($count_result) {
+                   $row_count = mysqli_fetch_assoc($count_result);
+                    $total_records = $row_count['total'];
+
+                   $records_per_page = 2;
+                   $total_pages = ceil($total_records / $records_per_page);
+
+        for ($page = 1; $page <= $total_pages; $page++) {
+            echo '<div class="w-[80px] btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[red]" : '').'">Trang ' . $page . '</div>';
+        }
+}
+                ?>
+                </div>
+
+
     </div>
     <script>
         const rowDatas = document.querySelectorAll('.row_data_customer');
@@ -213,6 +249,27 @@ include '../connect.php';
                 window.history.pushState({}, document.title, url.toString());
             });
         }
+
+
+        //pagination
+
+
+const listBtn = document.querySelectorAll(".btnPage");
+
+listBtn.forEach(btn => {
+    btn.addEventListener("click", function() {
+        
+        const page = this.classList.contains("btnPage") ? this.classList[1].split("-")[1] : null;
+        
+        if (page) {
+            const currentUrl = new URL(window.location.href);
+            
+            currentUrl.searchParams.set('page', page);
+            
+            window.location.href = currentUrl.toString();
+        }
+    });
+});
     </script>
 </body>
 

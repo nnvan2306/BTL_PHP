@@ -5,7 +5,7 @@ if (!empty($_POST)) {
     try {
         $id = $_POST["id"];
 
-        $stmt = $conn->prepare("DELETE FROM suacc WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM sua WHERE id = ?");
         $stmt->bind_param("s", $id);
 
         if ($stmt->execute()) {
