@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (empty($_SESSION['username'])) {
-    ?>
+?>
     <script>
-        window.location.href = `index.php?code=403`; 
+        window.location.href = `index.php?code=403`;
     </script>
-    <?php
+<?php
 }
 
 ?>
@@ -67,7 +67,7 @@ if (empty($_SESSION['username'])) {
 
             <!-- Footer -->
             <footer class="text-center text-gray-500 py-6">
-                <p>&copy; 2024 Sữa. All Rights Reserved.</p>
+                <p>&copy; 2024 Sản phẩm sữa chất lượng cao</p>
             </footer>
         </div>
     </div>

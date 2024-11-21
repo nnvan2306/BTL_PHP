@@ -11,7 +11,7 @@
     <script>
         const isLoginLocal = localStorage.getItem("isLogin");
         const fullUrl = window.location.href.split("/admin/index.php")[0];
-        if(isLoginLocal === '1'){
+        if (isLoginLocal === '1') {
             window.location.href = fullUrl;
         }
     </script>
@@ -25,13 +25,12 @@
                     class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
                     <form class="space-y-4" method="POST">
                         <div class="mb-8">
-                            <h3 class="text-gray-800 text-3xl font-extrabold">Login</h3>
-                            <p class="text-gray-500 text-sm mt-4 leading-relaxed">Đăng nhập để quản lý sản phẩm của cửa
-                                hàng Sữa</p>
+                            <h3 class="text-gray-800 text-3xl font-extrabold text-center">Đăng Nhập</h3>
+                            <p class="text-gray-500 text-sm mt-4 leading-relaxed text-center">Đăng nhập để quản lý sản phẩm</p>
                         </div>
 
                         <div>
-                            <label class="text-gray-800 text-sm mb-2 block">User name</label>
+                            <label class="text-gray-800 text-sm mb-2 block">Email</label>
                             <div class="relative flex items-center">
                                 <input name="username" type="text" required
                                     class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
@@ -70,7 +69,7 @@
                             </div>
 
                             <div class="text-sm">
-                                <a href="jajvascript:void(0);" class="text-blue-600 hover:underline font-semibold">
+                                <a href="jajvascript:void(0);" class="text-orange-600 hover:underline font-semibold">
                                     Bạn quên mật khẩu?
                                 </a>
                             </div>
@@ -78,19 +77,19 @@
 
                         <div class="!mt-8">
                             <button
-                                class="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                                class="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-orange-600 hover:bg-orange-700 focus:outline-none">
                                 Đăng Nhập
                             </button>
                         </div>
 
                         <p class="text-sm !mt-8 text-center text-gray-800">Nếu không có tài khoản! <a
                                 href="javascript:void(0);"
-                                class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Đăng ký tại
+                                class="text-orange-600 font-semibold hover:underline ml-1 whitespace-nowrap">Đăng ký tại
                                 đây</a></p>
                     </form>
                 </div>
-                <div class="lg:h-[400px] md:h-[300px] max-md:mt-8">
-                    <img src="https://readymadeui.com/login-image.webp"
+                <div class="lg:h-[650px] md:h-[300px] max-md:mt-8">
+                    <img src="https://tomau.vn/wp-content/uploads/Tranh-To-Mau-Hop-Sua-Cute.jpg"
                         class="w-full h-full max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
                 </div>
             </div>
@@ -136,7 +135,7 @@
                     icon: "success",
                     showConfirmButton: true,
                 }).then(() => {
-                    window.location.href =window.location.href.split("admin/dashboard.php")[0];
+                    window.location.href = window.location.href.split("admin/dashboard.php")[0];
                 });
             }
 
@@ -174,8 +173,8 @@ if (!empty($_POST)) {
 
     $query = "select * from user where Email = '$username'";
     $checkAdmin = mysqli_query($conn, "select * from user where Email = '$username' and IsAdmin = '1'");
-    if( $checkAdmin ->num_rows >= 1){  ?>
-     <script>
+    if ($checkAdmin->num_rows >= 1) {  ?>
+        <script>
             localStorage.setItem("isAdmin", "1")
         </script>
     <?php
@@ -202,7 +201,7 @@ if (!empty($_POST)) {
             <script>
                 window.location.href = `index.php?code=2`;
             </script>
-        <?php
+<?php
         }
     }
 }

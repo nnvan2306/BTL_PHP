@@ -12,7 +12,11 @@
     <header class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-lg font-bold">
-                <a href="index.php">Shop Sữa</a>
+                <<<<<<< HEAD
+                    <a href="index.php">Shop Sữa</a>
+                    =======
+                    <a href="index.php">Shop Sữa Chất Lượng Cao</a>
+                    >>>>>>> d4066b4 (up)
             </div>
             <div class="flex space-x-4">
                 <input type="text" class="p-2 rounded-lg" placeholder="Tìm kiếm sản phẩm...">
@@ -57,7 +61,7 @@
                 $result = mysqli_query($conn, $query);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        ?>
+                ?>
                         <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
                             <img src="<?php echo $row["thumbnail"] ?>" alt="Product"
                                 class="w-full h-48 object-cover mb-4 rounded-lg">
@@ -69,7 +73,7 @@
                             <a href="detail.php?sp=<?php echo $row["id"] ?>"
                                 class="bg-blue-600 text-white p-2 rounded-lg mt-4 w-full block text-center">Xem Chi Tiết</a>
                         </div>
-                        <?php
+                <?php
                     }
                 }
                 ?>
@@ -78,7 +82,7 @@
     </main>
     <footer class="bg-blue-600 text-white p-4 mt-8">
         <div class="container mx-auto text-center">
-            <p>&copy; 2024 Shop Sữa. All rights reserved.</p>
+            <p>&copy; 2024 Sản phẩm sữa chất lượng cao.</p>
         </div>
     </footer>
 
