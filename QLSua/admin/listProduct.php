@@ -249,10 +249,7 @@ include '../connect.php';
                 window.history.pushState({}, document.title, url.toString());
             });
         }
-
-
         //pagination
-
 
 const listBtn = document.querySelectorAll(".btnPage");
 

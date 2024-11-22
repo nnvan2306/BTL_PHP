@@ -1,8 +1,11 @@
 <?php
 include './connect.php';
+
 $product_id = isset($_GET['sp']) ? (int) $_GET['sp'] : 0;
-$query = "select * from sua where id = $product_id";
-$result = mysqli_query($conn, query: $query);
+
+// Lấy thông tin sản phẩm
+$query = "SELECT * FROM sua WHERE id = $product_id";
+$result = mysqli_query($conn, $query);
 
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();
@@ -14,14 +17,12 @@ if ($result->num_rows > 0) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product['title']; ?></title>
+    <title><?php echo htmlspecialchars($product['title']); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-gray-100">
     <header class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -49,24 +50,28 @@ if ($result->num_rows > 0) {
                     <h1 class="text-3xl font-semibold text-gray-900 mb-4">
                         <?php echo htmlspecialchars($product['title']); ?>
                     </h1>
-                    <p class="text-2xl font-bold text-red-500 mb-4">$<?php echo number_format($product['price'], 2); ?>
-                    </p>
+                    <p class="text-2xl font-bold text-red-500 mb-4">$<?php echo number_format($product['price'], 2); ?></p>
                     <div class="flex items-center mb-4">
                         <p class="text-gray-600">Weight: <?php echo number_format($product['weight'], 2); ?> kg</p>
                         <?php if ($product['is_active']): ?>
-                            <span class="ml-4 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">In
-                                Stock</span>
+                            <span class="ml-4 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">In Stock</span>
                         <?php else: ?>
-                            <span class="ml-4 px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded">Out of
-                                Stock</span>
+                            <span class="ml-4 px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded">Out of Stock</span>
                         <?php endif; ?>
                     </div>
                     <div class="text-gray-700 mb-6">
                         <?php echo nl2br(htmlspecialchars($product['content'])); ?>
                     </div>
-                    <button class="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg">
-                        Add to Cart
-                    </button>
+
+                    <form action="admin/addToCart.php" method="POST">
+                        <div class="flex items-center">
+                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                            <button type="button" class="btnT p-2 bg-blue-500 text-white">-</button>
+                            <input type="number" name="quantity" class="inputQuantity text-center w-16 mx-2 border rounded" value="1" min="1">
+                            <button type="button" class="btnG p-2 bg-blue-500 text-white">+</button>
+                        </div>
+                        <button type="submit" class="btnAddCart mt-4 bg-green-500 text-white px-4 py-2 rounded">Mua</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -76,6 +81,21 @@ if ($result->num_rows > 0) {
             <p>&copy; 2024 Shop Sữa. All rights reserved.</p>
         </div>
     </footer>
-</body>
 
+    <script>
+        const btnT = document.querySelector(".btnT");
+        const btnG = document.querySelector(".btnG");
+        const inputQuantity = document.querySelector(".inputQuantity");
+
+        btnT.addEventListener("click", () => {
+            if (+inputQuantity.value > 1) {
+                inputQuantity.value = +inputQuantity.value - 1;
+            }
+        });
+
+        btnG.addEventListener("click", () => {
+            inputQuantity.value = +inputQuantity.value + 1;
+        });
+    </script>
+</body>
 </html>
