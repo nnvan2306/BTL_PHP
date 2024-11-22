@@ -148,9 +148,11 @@ if ($result->num_rows > 0) {
                                 <p class="text-lg font-medium">Số lượng:</p>
 
                                 <div class="flex items-center border rounded-lg">
+                                <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                                     <button type="button" class="btnT bg-white text-gray-700">-</button>
                                     <input type="number" name="quantity" value="1" min="1"
                                         class="inputQuantity focus:ring-2 focus:ring-blue-300">
+                                        <input type="text" class="inputUserId" name="userId" hidden>
                                     <button type="button" class="btnG bg-white text-gray-700">+</button>
                                 </div>
                             </div>

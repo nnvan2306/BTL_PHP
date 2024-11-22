@@ -52,7 +52,7 @@ include '../connect.php';
                 
                 $offset = ($page - 1) * $records_per_page;
                 
-                $query = "SELECT * FROM Sua LIMIT $records_per_page OFFSET $offset";
+                $query = "SELECT * FROM Sua ";
                 $result = mysqli_query($conn, $query);
                 if ($result->num_rows > 0) {
                     $i = 1;
@@ -116,30 +116,6 @@ include '../connect.php';
         </table>
 
 
-
-
-        <div class="d-flex justify-center gap-1 mt-4 w-[100%]">
-
-
-                <?php
-
-
-                $sql_count = "SELECT COUNT(*) AS total FROM Sua";
-                $count_result = mysqli_query($conn, $sql_count);
-
-                if ($count_result) {
-                   $row_count = mysqli_fetch_assoc($count_result);
-                    $total_records = $row_count['total'];
-
-                   $records_per_page = 2;
-                   $total_pages = ceil($total_records / $records_per_page);
-
-        for ($page = 1; $page <= $total_pages; $page++) {
-            echo '<div class="w-[80px] btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[red]" : '').'">Trang ' . $page . '</div>';
-        }
-}
-                ?>
-                </div>
 
 
     </div>
@@ -248,7 +224,6 @@ include '../connect.php';
                 window.history.pushState({}, document.title, url.toString());
             });
         }
-        //pagination
 
 const listBtn = document.querySelectorAll(".btnPage");
 
