@@ -1,7 +1,6 @@
 <?php
 include '../connect.php';
 
-// Lấy dữ liệu từ bảng `cart` và kết hợp thông tin người dùng từ bảng `user`
 $query_cart_items = "
     SELECT 
         cart.id as cart_id, 
@@ -16,8 +15,7 @@ $query_cart_items = "
         user.GioiTinh
     FROM cart
     INNER JOIN sua ON cart.sua_id = sua.id
-    INNER JOIN user ON cart.user_id = user.MaKH
-    WHERE cart.user_id = (SELECT DISTINCT user_id FROM cart LIMIT 1)"; 
+    INNER JOIN user ON cart.user_id = user.MaKH";
 $result_cart_items = $conn->query($query_cart_items);
 
 if ($result_cart_items->num_rows > 0) {
@@ -39,10 +37,8 @@ if ($result_cart_items->num_rows > 0) {
     <div class="container mx-auto p-6">
         <h1 class="text-2xl font-bold mb-4">Danh sách đơn hàng</h1>
 
-        <!-- Hiển thị thông tin người dùng -->
         <?php if ($user_info): ?>
             <div class="mb-4">
-              
             </div>
         <?php else: ?>
             <p class="text-red-500">Không tìm thấy thông tin người dùng hoặc giỏ hàng.</p>
@@ -64,8 +60,7 @@ if ($result_cart_items->num_rows > 0) {
                 </thead>
                 <tbody>
                     <?php
-                    // Lấy lại kết quả sau khi fetch dữ liệu người dùng
-                    $result_cart_items->data_seek(0); // Đặt lại con trỏ kết quả
+                    $result_cart_items->data_seek(0); 
                     while ($row = $result_cart_items->fetch_assoc()): ?>
                         <tr class="border-b">
                             <td class="py-2 px-4"><?php echo $row['cart_id']; ?></td>

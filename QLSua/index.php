@@ -21,47 +21,18 @@
             <div class="flex">
 
                 <div class="flex space-x-4">
-                    <input type="text" class="p-2 rounded-lg" placeholder="Tìm kiếm sản phẩm...">
-                    <button class="bg-blue-800 p-2 rounded-lg btnAuth">
+                    <button class="bg-blue-800 p-2 rounded-lg btnAuth mx-3">
                         <a class="textAuth"></a>
                     </button>
                 </div>
-
                 <div class="auth">
-
                 </div>
             </div>
         </div>
     </header>
     <main class="container mx-auto p-4">
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Danh mục sản phẩm</h2>
-            <div class="grid grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg text-center">
-                    <img src="https://cdn.thuvienphapluat.vn/uploads/tintuc/2023/07/24/sua-dung-thay-sua-me.jpg"
-                        alt="Category" class="w-full h-32 object-cover mb-4 rounded-lg">
-                    <h3 class="font-semibold">Sữa Bò</h3>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg text-center">
-                    <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/khi_nao_nen_cho_be_uong_sua_1_4401cf044a.jpg"
-                        alt="Category" class="w-full h-32 object-cover mb-4 rounded-lg">
-                    <h3 class="font-semibold">Sữa Mẹ</h3>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg text-center">
-                    <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/1/11/870023/Untitled-1.jpg"
-                        alt="Category" class="w-full h-32 object-cover mb-4 rounded-lg">
-                    <h3 class="font-semibold">Sữa Đau Đầu</h3>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg text-center">
-                    <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/5/31/1051007/Sua-Lua-1.jpg"
-                        alt="Category" class="w-full h-32 object-cover mb-4 rounded-lg">
-                    <h3 class="font-semibold">Sữa Đá</h3>
-                </div>
-            </div>
-        </section>
         <section>
-            <h2 class="text-2xl font-semibold mb-4">Sản phẩm nổi bật</h2>
+            <h2 class="text-2xl font-semibold mb-4">Khám phá sản phẩm của chúng tôi</h2>
             <div class="">
                 <?php
                 include './connect.php';
@@ -114,80 +85,71 @@
                    $total_pages = ceil($total_records / $records_per_page);
 
         for ($page = 1; $page <= $total_pages; $page++) {
-            echo '<div class="btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[red]" : '').'">Trang ' . $page . '</div>';
+            echo '<div class="btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[blue] text-[#fff   ]" : '').'">Trang ' . $page . '</div>';
         }
 }
                 ?>
-
-
-
 </div>
-
-
-
-
             </div>     
 </section>
     </main>
-    <footer class="bg-blue-600 text-white p-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p> 2024 Shop Sữa All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        const isLogin = localStorage.getItem("isLogin");
-        const isAdmin = localStorage.getItem("isAdmin");
-        const textAuth = document.querySelector(".textAuth");
-        const btnAuth = document.querySelector(".btnAuth");
-        const authDiv = document.querySelector(".auth");
+    const isLogin = localStorage.getItem("isLogin");
+    const isAdmin = localStorage.getItem("isAdmin");
+    const textAuth = document.querySelector(".textAuth");
+    const btnAuth = document.querySelector(".btnAuth");
+    const authDiv = document.querySelector(".auth");
 
-
-        if (textAuth) {
-            if (isLogin === '1') {
-                textAuth.textContent = "Đăng xuất";
-                textAuth.href = window.location.href + "admin/index.php";
-            } else {
-                textAuth.textContent = "Đăng nhập";
-                textAuth.href ="admin/index.php";
-            }
+    if (textAuth) {
+        if (isLogin === '1') {
+            textAuth.textContent = "Đăng xuất";
+            textAuth.href = "admin/index.php";  
+        } else {
+            textAuth.textContent = "Đăng nhập";
+            textAuth.href = "admin/index.php"; 
         }
+    }
 
-        if (isAdmin === '1' && authDiv) {
+    if (authDiv) {
+        const userId = localStorage.getItem("userId");  
+        if (userId) {
             const link = document.createElement("a");
-            link.href = window.location.href.split("?")[0] + "admin/dashboard.php";
+            link.href = isAdmin === '1' ? "admin/dashboard.php" : `admin/account.php?userId=${userId}`;
             link.classList.add("btn-link");
 
             const newButton = document.createElement("button");
-            newButton.textContent = "Admin Control";
+            newButton.textContent = isAdmin === '1' ? "Admin Control" : "Thông tin tài khoản";
             newButton.classList.add("bg-blue-500", "text-white", "px-4", "py-2", "rounded", "hover:bg-blue-700", "focus:outline-none", "focus:ring", "focus:ring-blue-300");
             newButton.classList.add("btnAdmin");
 
             link.appendChild(newButton);
-
             authDiv.appendChild(link);
         }
-        if (btnAuth) {
-            btnAuth.addEventListener("click", () => {
-                if (isLogin === '1') {
-                    localStorage.setItem("isLogin", "0");
-                }
-            })
-        }
+    }
 
-        const listBtn = document.querySelectorAll(".btnPage");
+    if (btnAuth) {
+        btnAuth.addEventListener("click", () => {
+            if (isLogin === '1') {
+                localStorage.setItem("isLogin", "0");
+                localStorage.setItem("isAdmin", "0");
+                localStorage.setItem("userId", "0");
+                window.location.href = "index.php";
+            }
+        });
+    }
 
+    const listBtn = document.querySelectorAll(".btnPage");
+    listBtn.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const page = this.classList.contains("btnPage") ? this.classList[1].split("-")[1] : null;
 
-listBtn.forEach(btn => {
-    btn.addEventListener("click", function() {
-        const page = this.classList.contains("btnPage") ? this.classList[1].split("-")[1] : null;
-
-        if (page) {
-            window.location.href = window.location.pathname + "?page=" + page;
-        }
+            if (page) {
+                window.location.href = window.location.pathname + "?page=" + page;
+            }
+        });
     });
-});  
-    </script>
+</script>
+
 </body>
 
 

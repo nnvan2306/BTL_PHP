@@ -46,7 +46,6 @@ include '../connect.php';
             </thead>
             <tbody>
                 <?php
-                // $query = "select * from sua";
                 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
                 $records_per_page = 2; 
