@@ -85,7 +85,7 @@
                    $total_pages = ceil($total_records / $records_per_page);
 
         for ($page = 1; $page <= $total_pages; $page++) {
-            echo '<div class="btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[blue] text-[#fff   ]" : '').'">Trang ' . $page . '</div>';
+            echo '<div class="btnPage page-'.$page.' p-1 border-[1px] border-solid border-[#ccc] rounded-[10px] cursor-pointer hover:opacity-50 '.(isset($_GET['page']) && $_GET['page'] == $page ? "bg-[blue] text-[#fff]" : '').'">Trang ' . $page . '</div>';
         }
 }
                 ?>
