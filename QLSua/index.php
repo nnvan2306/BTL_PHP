@@ -187,14 +187,9 @@ listBtn.forEach(btn => {
 
         if (page) {
             window.location.href = window.location.pathname + "?page=" + page;
-           
-
         }
     });
-});
-
-
-        
+});  
     </script>
 </body>
 
