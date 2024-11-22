@@ -2,36 +2,28 @@
 session_start();
 include "../connect.php";
 
-// Kiểm tra nếu người dùng đã đăng nhập, chuyển hướng tới trang dashboard
 if (!empty($_SESSION['username'])) {
     header("Location: dashboard.php");
     exit;
 }
 
-// Xử lý đăng nhập khi người dùng gửi form
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST["username"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    // Truy vấn để lấy thông tin người dùng từ cơ sở dữ liệu
     $query = "SELECT * FROM user WHERE Email = '$username'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) < 1) {
-        // Tài khoản không tồn tại
         echo "<script>window.location.href = 'index.php?code=1';</script>";
     } else {
         $row = mysqli_fetch_assoc($result);
         
-        // So sánh mật khẩu
         if ($password === $row['Password']) {
-            // Mật khẩu đúng
             $_SESSION['username'] = $row['username'];
-            $_SESSION['user_id'] = $row['MaKH'];  // Lưu MaKH vào session
+            $_SESSION['user_id'] = $row['MaKH'];  
 
-            $isAdmin = $row['IsAdmin'] == 1 ? '1' : '0';  // Kiểm tra quyền admin
-            
-            // Lưu vào localStorage
+            $isAdmin = $row['IsAdmin'] == 1 ? '1' : '0'; 
             echo "<script>
                     localStorage.setItem('isLogin', '1');
                     localStorage.setItem('userId', '{$row['MaKH']}');  // Lưu MaKH vào localStorage
@@ -39,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     window.location.href = 'index.php?code=0';  // Đăng nhập thành công
                   </script>";
         } else {
-            // Mật khẩu sai
             echo "<script>window.location.href = 'index.php?code=2';</script>";
         }
     }

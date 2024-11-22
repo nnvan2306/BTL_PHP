@@ -17,16 +17,13 @@ $query_cart_items = "
     FROM cart
     INNER JOIN sua ON cart.sua_id = sua.id
     INNER JOIN user ON cart.user_id = user.MaKH
-    WHERE cart.user_id = (SELECT DISTINCT user_id FROM cart LIMIT 1)"; // Thay đổi user_id nếu cần
-
+    WHERE cart.user_id = (SELECT DISTINCT user_id FROM cart LIMIT 1)"; 
 $result_cart_items = $conn->query($query_cart_items);
 
-// Kiểm tra nếu có kết quả
 if ($result_cart_items->num_rows > 0) {
-    // Lấy thông tin người dùng từ kết quả truy vấn đầu tiên
     $user_info = $result_cart_items->fetch_assoc(); 
 } else {
-    $user_info = null; // Nếu không có dữ liệu
+    $user_info = null; 
 }
 ?>
 
@@ -45,11 +42,7 @@ if ($result_cart_items->num_rows > 0) {
         <!-- Hiển thị thông tin người dùng -->
         <?php if ($user_info): ?>
             <div class="mb-4">
-                <p><strong>Tên khách hàng:</strong> <?php echo htmlspecialchars($user_info['TenKH']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($user_info['Email']); ?></p>
-                <p><strong>Địa chỉ:</strong> <?php echo htmlspecialchars($user_info['DiaChi']); ?></p>
-                <p><strong>Điện thoại:</strong> <?php echo htmlspecialchars($user_info['DienThoai']); ?></p>
-                <p><strong>Giới tính:</strong> <?php echo htmlspecialchars($user_info['GioiTinh']); ?></p>
+              
             </div>
         <?php else: ?>
             <p class="text-red-500">Không tìm thấy thông tin người dùng hoặc giỏ hàng.</p>

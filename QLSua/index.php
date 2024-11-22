@@ -101,9 +101,7 @@
 
             <div class="d-flex justify-center gap-1 mt-4">
 
-
                 <?php
-
 
                 $sql_count = "SELECT COUNT(*) AS total FROM Sua";
                 $count_result = mysqli_query($conn, $sql_count);

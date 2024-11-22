@@ -4,6 +4,8 @@ include '../connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
     $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
+    $userId = isset($_POST['userId']) ? (int)$_POST['userId'] : 0;
+
 
     if ($product_id <= 0 || $quantity <= 0) {
         echo "<script>
@@ -13,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $query = "INSERT INTO cart (sua_id, quantity) VALUES (?, ?)";
+    $query = "INSERT INTO cart (sua_id, quantity , user_id) VALUES (?, ? ,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ii", $product_id, $quantity);
+    $stmt->bind_param("iii", $product_id, $quantity ,$userId);
 
     if ($stmt->execute()) {
         echo "<script>
